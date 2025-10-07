@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About India - Tour & Travels</title>
+  <meta name="description" content="Discover famous places, temples, valleys, and mountains of India." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* ==== Navbar Styling ==== */
+    .navbar {
+      background: linear-gradient(90deg, #141e30, #243b55);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .navbar .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .navbar .nav-link:hover {
+      color: #ffd700 !important;
+      transform: scale(1.1);
+    }
+    .navbar-brand {
+      color: #fff !important;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand img {
+      height: 45px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    /* ==== Section Layout ==== */
+    .place-section {
+      margin: 60px 0;
+    }
+    .place-text {
+      padding: 20px;
+    }
+    .place-text h2 {
+      color: #dd2476;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .place-text p {
+      line-height: 1.7;
+      text-align: justify;
+    }
+    .place-img img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .place-img img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    /* ==== Founder & Team Section ==== */
+    .team-section {
+      background: #f8f9fa;
+      padding: 60px 20px;
+      margin-top: 60px;
+      border-radius: 10px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .team-section h2 {
+      text-align: center;
+      color: #f61ce8;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+    .team-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #656b72;
+    }
+    .team-card h5 {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #12040a;
+    }
+    .team-card p {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: #333;
+    }
+    .team-social a {
+      color: #5913ef;
+      font-size: 1.2rem;
+      margin: 0 8px;
+      transition: color 0.3s ease;
+    }
+    .team-social a:hover {
+      color: #ec1572;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #121212;
+      color: #e9ecef;
+    }
+    body.dark-mode .team-section {
+      background: #1e1e1e;
+      color: #e9ecef;
+    }
+    body.dark-mode .team-card {
+      background: #2a2a2a;
+      color: #e9ecef;
+    }
+    body.dark-mode .team-card p {
+      color: #f0f0a0;
+    }
+    body.dark-mode .place-text h2 {
+      color: #ff6ec4;
+    }
+    body.dark-mode .place-text p {
+      color: #ddd;
+    }
+    body.dark-mode footer.site-footer {
+      background: #000 !important;
+      color: #fff !important;
+    }
+
+    /* ==== Footer ==== */
+    footer.site-footer {
+      background: #111 !important;
+      color: #fff !important;
+      padding: 18px 0;
+      margin-top: 40px;
+    }
+    footer.site-footer p {
+      margin: 0;
+    }
+
+    /* ==== Contact Button ==== */
+    .contact-btn {
+      display: block;
+      width: 200px;
+      margin: 40px auto;
+      padding: 12px 25px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .contact-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- Navbar -->
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="img/logo2.jpg" alt="Logo"> Tour & Travels
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="mainNav" class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="booking.html">Book Now</a></li>
+            <li class="nav-item"><a class="nav-link active" href="about.html">About India</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li><button id="darkToggle" class="btn btn-outline-light btn-sm">🌙</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Taj Mahal -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text">
+        <h2>1. Taj Mahal, Agra</h2>
+        <p>
+          The Taj Mahal, one of the Seven Wonders of the World, is India’s most iconic monument. 
+          Built by Mughal Emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal, this white marble mausoleum 
+          stands as a symbol of eternal love. Its intricate carvings, calligraphy, and the stunning symmetry of the architecture 
+          make it one of the finest examples of Mughal art. Every year, millions of travelers visit Agra to witness the breathtaking 
+          beauty of the Taj, especially at sunrise and sunset when the monument changes its hues with the sunlight. 
+          Surrounding gardens, reflecting pools, and the Yamuna River add to its charm. UNESCO declared it a World Heritage Site in 1983. 
+          Beyond its romantic story, the Taj Mahal represents India’s rich history, cultural depth, and the skill of artisans 
+          who created such a masterpiece centuries ago. Visiting the Taj is an unforgettable experience, offering both 
+          architectural grandeur and emotional resonance.
+        </p>
+      </div>
+      <div class="col-md-6 place-img">
+        <img src="img/taj.jpg" alt="Taj Mahal, Agra">
+      </div>
+    </section>
+
+    <!-- Kedarnath Temple -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text order-md-2">
+        <h2>2. Kedarnath Temple, Uttarakhand</h2>
+        <p>
+          Kedarnath Temple, located in the majestic Himalayas of Uttarakhand, is one of the most sacred Hindu shrines dedicated to Lord Shiva. 
+          Situated at an altitude of 3,583 meters near the Mandakini River, it is part of the Char Dham Yatra and attracts lakhs of pilgrims every year. 
+          Built with massive stone slabs, the temple is believed to date back to the Mahabharata era. The stunning backdrop of snow-clad mountains, 
+          chilly winds, and the divine atmosphere makes it a spiritual as well as adventurous experience. The temple opens only for six months due to 
+          extreme weather conditions, and during winter, the idol is shifted to Ukhimath. Kedarnath is not just a pilgrimage; it is an emotional 
+          journey of faith, endurance, and devotion. Trekkers and spiritual seekers alike find solace here, with the journey itself being as rewarding 
+          as the destination. Kedarnath stands as a timeless testimony of India’s spiritual heritage and breathtaking natural beauty.
+        </p>
+      </div>
+      <div class="col-md-6 place-img order-md-1">
+        <img src="img/kedarnath.jpg" alt="Kedarnath Temple, Uttarakhand">
+      </div>
+    </section>
+
+    <!-- Kashmir Valley -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text">
+        <h2>3. Kashmir Valley, Jammu & Kashmir</h2>
+        <p>
+          Known as “Paradise on Earth,” Kashmir Valley is one of the most beautiful destinations in India. Surrounded by the 
+          snow-capped Himalayas and lush green meadows, it offers a breathtaking blend of nature and culture. Srinagar’s Dal Lake, 
+          with its famous houseboats and shikaras, is a major attraction. Gulmarg, known for skiing and meadows of flowers, and Pahalgam, 
+          with its pine forests and rivers, make Kashmir a dreamland for travelers. The valley is also famous for saffron fields, apple orchards, 
+          and exquisite Kashmiri handicrafts like pashmina shawls and carpets. The serene beauty of its landscapes has inspired poets, writers, and filmmakers for centuries. 
+          Apart from natural beauty, Kashmir is a melting pot of traditions, with Kashmiri cuisine like Rogan Josh and Kahwa offering rich flavors. 
+          Every corner of the valley feels like a painting come to life, making it a must-visit for nature lovers, honeymooners, and adventure seekers alike.
+        </p>
+      </div>
+      <div class="col-md-6 place-img">
+        <img src="img/kashmir.jpg" alt="Kashmir Valley">
+      </div>
+    </section>
+
+    <!-- Meenakshi Temple -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text order-md-2">
+        <h2>4. Meenakshi Temple, Madurai</h2>
+        <p>
+          The Meenakshi Amman Temple in Madurai, Tamil Nadu, is a masterpiece of Dravidian architecture and one of the most celebrated temples in India. 
+          Dedicated to Goddess Meenakshi (a form of Parvati) and Lord Sundareswarar (Shiva), it attracts millions of devotees and tourists annually. 
+          The temple complex has 14 gopurams (gateway towers) intricately carved with thousands of colorful sculptures depicting gods, goddesses, 
+          demons, and mythical beings. The tallest tower rises to over 170 feet, showcasing the grandeur of Tamil architecture. Inside, the temple 
+          boasts thousands of pillars, each uniquely carved, and the famous Hall of Thousand Pillars. The temple is not just a place of worship 
+          but also a hub of culture, art, and festivals like the Chithirai Festival, which draws huge crowds. Meenakshi Temple reflects the spiritual 
+          and artistic vibrance of South India, standing as a symbol of devotion and craftsmanship for centuries.
+        </p>
+      </div>
+      <div class="col-md-6 place-img order-md-1">
+        <img src="img/Meenakshi.jpg" alt="Meenakshi Temple, Madurai">
+      </div>
+    </section>
+
+    <!-- Red Fort -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-img">
+        <img src="img/redfort.jpg" alt="Red Fort, Delhi">
+      </div>
+      <div class="col-md-6 place-text">
+        <h2>5. Red Fort, Delhi</h2>
+        <p>
+          A symbol of India’s sovereignty, the Lal Qila or Red Fort is a massive historical fort in the old city of Delhi. Built by Shah 
+          Jahan in the 17th century, it served as the main residence of the Mughal emperors. Its imposing red sandstone walls enclose
+          a complex of palaces, halls, and gardens. The fort is renowned for halls like Diwan-i-Aam (Hall of Public Audience) and the Diwan-i-Khas 
+          (Hall of Private Audience). Every year on Independence Day, the Prime Minister hoists the national flag and addresses 
+          the nation from its ramparts, making it a living symbol of the nation's pride.
+        </p>
+      </div>
+    </section>
+
+    <!-- Gateway of India -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text">
+        <h2>6. Gateway of India, Mumbai</h2>
+        <p>
+          Standing proudly on the waterfront of Mumbai Harbour, the Gateway of India is an arch-monument representing the spirit of the city.
+          Built to commemorate the landing of King George V and Queen Mary in 1911, this Indo-Saracenic style structure is a popular gathering spot. 
+          Facing the Arabian Sea, it offers stunning views during sunrise and sunset and serves as the starting point for ferries heading to the historic Elephanta Caves.
+        </p>
+      </div>
+      <div class="col-md-6 place-img">
+        <img src="img/mumbai.jpg" alt="Gateway Of India, Mumbai">
+      </div>
+    </section>
+
+    <!-- Golden Temple -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-img">
+        <img src="img/goldentemple.jpg" alt="The Golden Temple">
+      </div>
+      <div class="col-md-6 place-text">
+        <h2>7. The Golden Temple, Amritsar</h2>
+        <p>
+          The holiest shrine in Sikhism, the Golden Temple is an oasis of calm and devotion. Its upper floors are covered in pure gold,
+          creating a stunning reflection in the surrounding sacred pool, the Amrit Sarovar (Pool of Nectar). The temple is open to people of all
+          faiths, embodying the Sikh principles of equality and selfless service. Free vegetarian meals are served to tens of thousands of people every day,
+          regardless of their background. The continuous recitation of holy scriptures creates a deeply peaceful and meditative atmosphere.
+        </p>
+      </div>
+    </section>
+
+    <!-- Himalayan Mountains -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text">
+        <h2>8. The Himalayan Mountain Range</h2>
+        <p>
+          The Himalayas are the highest and most majestic mountain range in the world, stretching across India, Nepal, Bhutan, China, and Pakistan. 
+          Mount Everest, the tallest peak, rises to 8,848 meters and attracts climbers from around the globe. Many important rivers originate here, 
+          supporting millions downstream. The mountains hold great religious and cultural significance, host unique wildlife, and attract adventurers every year.
+        </p>
+      </div>
+      <div class="col-md-6 place-img">
+        <img src="img/04.jpg" alt="Himalayan Mountain">
+      </div>
+    </section>
+
+    <!-- Backwaters of Kerala -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-img">
+        <img src="img/kerala.jpg" alt="Backwaters of Kerala">
+      </div>
+      <div class="col-md-6 place-text">
+        <h2>9. The Backwaters of Kerala</h2>
+        <p>
+          Kerala’s backwaters are a network of tranquil canals, rivers, and lakes offering a unique experience. Houseboats, or ‘kettuvallams,’
+          allow visitors to drift along these waters, witnessing lush greenery, coconut groves, paddy fields, and rural life. The backwaters reflect
+          the serene lifestyle and natural beauty of the state, making it a favorite destination for honeymooners and nature lovers.
+        </p>
+      </div>
+    </section>
+
+    <!-- Kashi Vishwanath Temple -->
+    <section class="place-section row align-items-center">
+      <div class="col-md-6 place-text order-md-2">
+        <h2>10. Kashi Vishwanath Temple, Varanasi</h2>
+        <p>
+          One of the holiest temples dedicated to Lord Shiva, Kashi Vishwanath in Varanasi stands on the banks of the Ganges. 
+          With a history spanning thousands of years, it is a site of immense spiritual importance for Hindus. Pilgrims come to seek blessings, 
+          perform rituals, and take a dip in the sacred river. The temple’s golden spire and the surrounding ghats create a timeless spiritual ambiance.
+        </p>
+      </div>
+      <div class="col-md-6 place-img order-md-1">
+        <img src="img/kashi.jpg" alt="Kashi Vishwanath Temple, Varanasi">
+      </div>
+    </section>
+
+    <!-- Founder & Team Section -->
+    <section class="team-section container">
+      <h2>Founder & Our Team</h2>
+      <div class="row g-4 justify-content-center">
+
+        <!-- Founder -->
+        <div class="col-md-4">
+          <div class="team-card">
+            <img src="img/founder.jpg" alt="Founder">
+            <h5>Nitin Kumar</h5>
+            <p>Founder & CEO</p>
+            <p>Junior Python Developer</p>
+            <div class="team-social">
+              <a href="https://github.com/Nitin765kumar" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/nitinkumar25" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/Nitinkumar812719" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 1 -->
+        <div class="col-md-4">
+          <div class="team-card">
+            <img src="img/team3.jpg" alt="Team Member">
+            <h5>Priya Sharma</h5>
+            <p>Travel Guide</p>
+            <div class="team-social">
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="col-md-4">
+          <div class="team-card">
+            <img src="img/team2.jpg" alt="Team Member">
+            <h5>Rahul Verma</h5>
+            <p>Marketing Manager</p>
+            <div class="team-social">
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Us Button -->
+    <a href="contact.html" class="contact-btn">Contact Us</a>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Tour & Travels. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Dark mode toggle
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle('light-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀' : '🌙';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tour & Travels</title>
+  <meta name="description" content="Tour & Travels - Book best packages and explore top destinations." />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body.light-mode {
+      background: #f8f9fa;
+      color: #212529;
+    }
+    body.dark-mode {
+      background: #121212;
+      color: #e9ecef;
+    }
+
+    /* Hero */
+    .hero-section {
+      background: url('img/hero.jpg') center center/cover no-repeat;
+      min-height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      text-align: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 20, 0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px;
+    }
+    .citation {
+      font-style: italic;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #ff5733;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: moveLeft 12s linear infinite;
+    }
+    @keyframes moveLeft {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .hero-content h1:hover {
+      transform: scale(1.08);
+      color: #ffd700;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    .hero-content p { font-size: 1.2rem; margin-bottom: 20px; }
+
+    .btn-warning {
+      background: #ffd700;
+      color: #000;
+      border-radius: 30px;
+      font-weight: bold;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+    .btn-warning:hover {
+      background: #ffae00;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 174, 0, 0.4);
+    }
+
+    .btn-outline-primary {
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: bold;
+    }
+
+    /* Tourism Section */
+    .tourism-section {
+      padding: 4rem 2rem;
+    }
+    .tourism-section img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+    .tourism-section h2 {
+      margin-bottom: 15px;
+      font-size: 2rem;
+      color: #007bff;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: #000;
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="img/logo2.jpg" alt="Logo" width="60" height="60" class="me-2 rounded-circle">
+        <span class="fw-bold">Tour & Travels</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">Book Now</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About India</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          <li class="nav-item">
+            <button id="darkModeToggle" class="btn btn-outline-light btn-sm ms-lg-3">🌙 Dark Mode</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="citation">✨ Travel far, explore more, live the journey ✨</p>
+      <h1>Explore The World With Us</h1>
+      <p>Discover breathtaking destinations, adventures, and culture. Your journey begins here—start planning your dream trip today!</p>
+      <a href="about.html" class="btn btn-warning">Read More</a>
+    </div>
+  </section>
+
+  <!-- INDIA TOURISM SECTION (UNCHANGED ✅) -->
+  <section class="tourism-section">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6 col-md-12">
+        <h2>Incredible India Tourism</h2>
+        <p>India is a land of vibrant colors, rich heritage, and breathtaking landscapes, is truly incredible. From the snow-capped peaks of the Himalayas in the north to the serene backwaters of Kerala in the south, from the golden deserts of Rajasthan to the lush greenery of Assam, every corner of India tells a unique story.</p>
+        <p>This diverse country is home to centuries-old temples, majestic palaces, ancient forts, bustling markets, and colorful festivals that celebrate its rich culture and traditions. Whether you seek adventure in the mighty rivers and mountains, spiritual solace in sacred temples and ghats, or a journey through history in UNESCO World Heritage sites, India offers experiences that leave travelers mesmerized.</p>
+        <p>Explore the mystical aura of Varanasi, the architectural marvel of the Taj Mahal, the vibrant city life of Mumbai, or the tranquil beaches of Goa - every destination promises memories that last a lifetime. Come, witness the magic, the flavors, and the endless charm of Incredible India!</p>
+        <a href="destinations.html" class="btn btn-outline-primary mt-3">Our Top Destinations</a>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <img src="img/india.jpg" alt="Incredible India">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Tour & Travels. All rights reserved.</p>
+    <p class="small">Designed with ❤ — contact@tourandtravels.example</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Dark Mode -->
+  <script>
+    const body = document.body;
+    const toggleBtn = document.getElementById("darkModeToggle");
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      body.classList.toggle("light-mode");
+      toggleBtn.textContent = body.classList.contains("dark-mode") ? "☀ Light Mode" : "🌙 Dark Mode";
+    });
+  </script>
+</body>
+</html>

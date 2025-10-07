@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Destinations - Tour & Travels</title>
+  <meta name="description" content="Explore top destinations with Tour & Travels." />
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, #000000, #1f1c2c, #3a1c71);
+      color: #fff;
+    }
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .navbar .brand img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Desktop Nav */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    .nav-links li a:hover, .nav-links li a.active {
+      color: #ffd700;
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 2px;
+    }
+
+    /* Dark Mode Button */
+    .dark-toggle {
+      margin-left: 15px;
+      background: #222;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+    .dark-toggle:hover {
+      background: #444;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 75px;
+      right: 2rem;
+      background: linear-gradient(90deg, #000000, #1f1c2c, #3a1c71);
+      border-radius: 12px;
+      padding: 15px;
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .mobile-menu a, .mobile-menu button {
+      color: #fff;
+      text-decoration: none;
+      margin: 10px 0;
+      text-align: center;
+      font-weight: 500;
+    }
+    .mobile-menu.show {
+      display: flex;
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      text-align: center;
+      margin: 3rem 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .animated-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #007bff;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .animated-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 4px;
+      background: #ffae00;
+      transition: width 0.4s ease;
+      border-radius: 2px;
+    }
+    .animated-heading:hover {
+      transform: scale(1.1) rotate(-2deg);
+      color: #ffae00;
+    }
+    .animated-heading:hover::after {
+      width: 100%;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-top: 0.5rem;
+    }
+
+    /* DESTINATION CARDS */
+    .destinations .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .card {
+      flex: 1 1 280px;
+      max-width: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .card img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card-text {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card .btn {
+      margin-top: 10px;
+      border-radius: 25px;
+      font-weight: bold;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      transition: all 0.3s;
+      text-decoration: none;
+      text-align: center;
+    }
+    .card .btn:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* DISCOVER PACKAGE BUTTON */
+    .discover-btn {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      background: #ffd700;
+      color: #000;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-weight: bold;
+      text-decoration: none;
+      width: max-content;
+      transition: all 0.3s ease;
+    }
+    .discover-btn:hover {
+      background: #ffae00;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 174, 0, 0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      background: #000;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px){
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background: #121212;
+      color: #f8f9fa;
+    }
+    body.dark .card {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    body.dark .navbar {
+      background: linear-gradient(90deg, #111, #222, #333);
+    }
+    body.dark footer {
+      background: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="img/logo2.jpg" alt="Logo">
+      Tour & Travels
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="destinations.html">Destinations</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="about.html">About India</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button></li>
+    </ul>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a class="active" href="destinations.html">Destinations</a>
+    <a href="packages.html">Packages</a>
+    <a href="booking.html">Book Now</a>
+    <a href="about.html">About India Tourism</a>
+    <a href="contact.html">Contact</a>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h2 class="animated-heading">Our Top Destinations</h2>
+    <p>Discover handpicked destinations for your next vacation.</p>
+  </div>
+
+  <!-- DESTINATION CARDS -->
+  <section class="destinations container">
+    <div class="row">
+      <!-- Agra -->
+      <div class="card">
+        <img src="img/taj.jpg" alt="Taj Mahal">
+        <div class="card-body">
+          <h5 class="card-title">Agra</h5>
+          <p class="card-text">Visit the iconic Taj Mahal, one of the 7 wonders of the world.</p>
+          <a href="booking.html?destination=Agra" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Delhi -->
+      <div class="card">
+        <img src="img/delhi.jpg" alt="India Gate">
+        <div class="card-body">
+          <h5 class="card-title">Delhi</h5>
+          <p class="card-text">Explore historic monuments, bustling markets, and street food.</p>
+          <a href="booking.html?destination=Delhi" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Manali -->
+      <div class="card">
+        <img src="img/manali.jpg" alt="Manali">
+        <div class="card-body">
+          <h5 class="card-title">Manali</h5>
+          <p class="card-text">Perfect for adventure lovers — snow, trekking, and scenic beauty.</p>
+          <a href="booking.html?destination=Manali" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Goa -->
+      <div class="card">
+        <img src="img/05.jpg" alt="Goa Beach">
+        <div class="card-body">
+          <h5 class="card-title">Goa</h5>
+          <p class="card-text">Golden beaches, nightlife, and Portuguese heritage sites await you.</p>
+          <a href="booking.html?destination=Goa" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Jaipur -->
+      <div class="card">
+        <img src="img/06.jpg" alt="Jaipur Palace">
+        <div class="card-body">
+          <h5 class="card-title">Jaipur</h5>
+          <p class="card-text">The Pink City full of forts, palaces, and royal heritage.</p>
+          <a href="booking.html?destination=Jaipur" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Ayodhya -->
+      <div class="card">
+        <img src="img/ayodhya.jpg" alt="Ayodhya Ram Temple">
+        <div class="card-body">
+          <h5 class="card-title">Ayodhya</h5>
+          <p class="card-text">Experience the spiritual vibes at the Ram Temple and ghats.</p>
+          <a href="booking.html?destination=Ayodhya" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Kaziranga (Assam) -->
+      <div class="card">
+        <img src="img/kaziranga.jpeg" alt="Kaziranga National Park">
+        <div class="card-body">
+          <h5 class="card-title">Kaziranga</h5>
+          <p class="card-text">Explore the famous Kaziranga National Park, home of the one-horned rhinoceros.</p>
+          <a href="booking.html?destination=Kaziranga" class="btn">Book Now</a>
+        </div>
+      </div>
+      <!-- Tawang -->
+      <div class="card">
+        <img src="img/tawang.jpg" alt="Tawang">
+        <div class="card-body">
+          <h5 class="card-title">Tawang</h5>
+          <p class="card-text">Visit the stunning Tawang Monastery amidst Himalayan landscapes and serene valleys.</p>
+          <a href="booking.html?destination=Tawang" class="btn">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER PACKAGE BUTTON -->
+  <a href="packages.html" class="discover-btn">Discover Packages</a>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Tour & Travels. All rights reserved.</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      mobileMenu.classList.toggle("show");
+    });
+
+    function toggleDarkMode(){
+      document.body.classList.toggle('dark');
+    }
+  </script>
+
+</body>
+</html>

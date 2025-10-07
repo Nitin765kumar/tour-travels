@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Your Trip - Tour & Travels</title>
+  <meta name="description" content="Book a tour package with Tour & Travels." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #0d6efd;
+      --secondary-color: #141e30;
+      --light-bg: #fff;
+      --dark-bg: #121212;
+      --light-text: #000;
+      --dark-text: #fff;
+      --input-bg: #f8f9fa;
+      --input-dark-bg: #1e1e1e;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #141e30, #243b55);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .navbar .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-link:hover {
+      color: #ffd700 !important;
+      transform: scale(1.1);
+    }
+
+    .navbar-brand {
+      color: #fff !important;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .navbar-brand img {
+      height: 45px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .nav-link.active {
+      font-weight: 600;
+      color: #ffd700 !important;
+    }
+
+    /* Dark mode toggle button */
+    .dark-toggle {
+      background: none;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dark-toggle:hover {
+      background-color: #ffd700;
+      color: #000;
+      border-color: #ffd700;
+    }
+
+    /* Booking form card - professional look */
+    .card {
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      padding: 2rem;
+      background: linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);
+    }
+
+    .form-control, .form-select, textarea {
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      background: var(--input-bg);
+    }
+
+    body.dark-mode .form-control,
+    body.dark-mode .form-select,
+    body.dark-mode textarea {
+      background-color: var(--input-dark-bg);
+      color: #fff;
+      border-color: #444;
+    }
+
+    .form-control:focus, .form-select:focus, textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 6px rgba(13,110,253,0.4);
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    /* Heading hover effect ONLY on heading */
+    .form-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      color: #243b55;
+      transition: all 0.35s ease;
+      display: inline-block;
+    }
+
+    .form-heading:hover {
+      background: linear-gradient(90deg, #0d6efd, #ffd700);
+      background-clip: text;               /* ✅ added */
+      -webkit-background-clip: text;       /* ✅ fix for Chrome/Safari */
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(13,110,253,0.22);
+      cursor: pointer;
+    }
+
+    footer.site-footer {
+      background-color: #111;
+      color: #fff;
+      padding: 18px 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .card {
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="#">
+          <img src="img/logo2.jpg" alt="Tour & Travels Logo">Tour & Travels
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+            <li class="nav-item"><a class="nav-link active" href="booking.html">Book Now</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About India</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <button class="dark-toggle ms-lg-3 mt-2 mt-lg-0" id="darkModeToggle">Dark Mode</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-5">
+    <div class="card shadow-lg mx-auto" style="max-width: 650px;">
+      <h2 class="form-heading mb-4">Book a Trip</h2>
+      <p class="text-center mb-4 text-muted">Fill the form to request your trip booking. Our team will contact you for confirmation.</p>
+
+      <form id="bookingForm" action="#" method="post" novalidate>
+        <div id="formMessage" aria-live="polite" class="mb-3 text-danger"></div>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Your full name" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="destination" class="form-label">Destination <span class="text-danger">*</span></label>
+          <select id="destination" name="destination" class="form-select" required>
+            <option value="">Choose destination</option>
+            <option value="Agra">Agra</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Ayodhya">Ayodhya - Ram Temple</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Goa">Goa</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Rishikesh">Rishikesh</option>
+            <option value="Varanasi">Varanasi</option>
+            <option value="Mumbai">Gate Way Of India</option>
+            <option value="Delhi">Red Fort</option>
+            <option value="Arunachal Pradesh">Tawang</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Travel Date <span class="text-danger">*</span></label>
+          <input type="date" id="date" name="date" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="people" class="form-label">Number of people</label>
+          <input type="number" id="people" name="people" min="1" value="1" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">Additional Notes (optional)</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Any important details" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100">Book Now</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Tours &amp; Travels. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dark mode toggle
+      const toggle = document.getElementById('darkModeToggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          toggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+        });
+      }
+
+      // Form validation handler
+      const form = document.getElementById('bookingForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          const message = document.getElementById('formMessage');
+          message.textContent = '';
+          if (!form.checkValidity()) {
+            e.preventDefault();
+            message.textContent = 'Please fill all required fields correctly.';
+            const invalid = form.querySelector(':invalid');
+            if (invalid) invalid.focus();
+          } else {
+            e.preventDefault();
+            message.style.color = 'green';
+            message.textContent = 'Thanks — your request has been received. We will contact you shortly.';
+            setTimeout(() => { message.textContent = ''; message.style.color = 'red'; }, 4000);
+            form.reset();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
